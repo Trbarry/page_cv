@@ -6,9 +6,15 @@
   <title>T****n B****y — CV (BTS SIO SISR, Cybersécurité)</title>
   <meta name="description" content="CV en ligne de T****n B****y — BTS SIO (SISR). eJPT & CPTS (HTB). Intérêt : pentest web et réseau, Linux, GitHub." />
   <link rel="canonical" href="https://trbarry.github.io/page_cv/" />
-  <!-- Bootstrap 5 + Icons (CDN) -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Perf: preconnect + preload (noscript fallback plus bas) -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  </noscript>
 
   <!-- Thème noir + accessibilité + boutons cliquables -->
   <style>
@@ -21,24 +27,25 @@
       --c-border: #262634;
       --c-text: #e9e9ef;
       --c-text-dim: #a7abbb;
-      --c-primary: #8b5cf6;            /* Violet lumineux */
-      --c-primary-strong: #a78bfa;
-      --c-primary-rgb: 139,92,246;
 
-      /* Map vers tokens Bootstrap */
+      /* Violet (déclinaisons statiques pour compatibilité) */
+      --c-primary: #8b5cf6;        /* base */
+      --c-primary-strong: #a78bfa; /* + clair */
+      --c-primary-dark: #6d28d9;   /* + foncé */
+      --c-primary-vdark: #4c1d95;  /* très foncé */
+
+      /* Mappage Bootstrap */
       --bs-body-bg: var(--c-bg);
       --bs-body-color: var(--c-text);
       --bs-card-bg: var(--c-card);
       --bs-border-color: var(--c-border);
       --bs-secondary: var(--c-text-dim);
-      --bs-secondary-rgb: 167,171,187;
       --bs-primary: var(--c-primary);
-      --bs-primary-rgb: var(--c-primary-rgb);
-      --bs-link-color: color-mix(in oklab, var(--c-primary) 92%, white 8%);
+      --bs-link-color: #8f66f7;
       --bs-link-hover-color: var(--c-primary-strong);
       --bs-heading-color: var(--c-text);
       --bs-code-color: var(--c-primary-strong);
-      --bs-focus-ring-color: color-mix(in oklab, var(--c-primary) 70%, white 30%);
+      --bs-focus-ring-color: rgba(139, 92, 246, .35);
     }
 
     /* Relief doux et séparations subtiles */
@@ -49,9 +56,7 @@
 
     /* Toggler lisible sur fond sombre */
     .navbar-toggler { border-color: rgba(255,255,255,.15); }
-    .navbar-toggler-icon {
-      filter: invert(1) contrast(1.3);
-    }
+    .navbar-toggler-icon { filter: invert(1) contrast(1.3); }
 
     /* Avatar */
     .avatar {
@@ -79,23 +84,23 @@
       padding: var(--pad-y) var(--pad-x);
       border-radius: 999px;
       transition: transform .08s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
-      min-height: 44px;                       /* hit target A11Y */
+      min-height: 44px;
       display: inline-flex; align-items: center; gap: .45rem;
     }
     .btn:active { transform: translateY(1px); }
-    .btn:focus-visible {
-      outline: 0;
-      box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .25);
-    }
+    .btn:focus-visible { outline: 0; box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
+
     .btn-primary {
-      background: linear-gradient(180deg, color-mix(in oklab, var(--c-primary) 92%, black 8%), var(--c-primary));
-      border-color: color-mix(in oklab, var(--c-primary) 80%, black 20%);
+      background: linear-gradient(180deg, #9a6bff, #7c3aed);
+      border-color: var(--c-primary-dark);
       color: #fff;
     }
     .btn-primary:hover {
-      background: color-mix(in oklab, var(--c-primary) 85%, white 15%);
-      border-color: color-mix(in oklab, var(--c-primary) 75%, black 25%);
+      background: #a78bfa;
+      border-color: #8b5cf6;
+      color: #fff;
     }
+
     .btn-outline-light {
       border-color: rgba(255,255,255,.35);
       color: #fff;
@@ -106,51 +111,48 @@
       border-color: rgba(255,255,255,.55);
       color: #fff;
     }
+
     .btn-ghost {
       background: transparent;
       border: 1px solid var(--bs-border-color);
       color: var(--c-text);
     }
     .btn-ghost:hover {
-      background: rgba(var(--bs-primary-rgb), .08);
-      border-color: color-mix(in oklab, var(--c-primary) 60%, var(--c-border) 40%);
+      background: rgba(139,92,246,.08);
+      border-color: var(--c-primary-dark);
       color: #fff;
     }
 
-    /* Badges -> boutons cliquables (même look “pill”, meilleure surface) */
+    /* Badges transformés en pills cliquables */
     .pill-link {
       display: inline-flex; align-items: center; gap: .4rem;
       padding: .45rem .7rem;
       border-radius: 999px;
-      border: 1px solid color-mix(in oklab, var(--c-primary) 65%, var(--c-border) 35%);
+      border: 1px solid #5b2ab6; /* fixe (ex-mix) */
       color: var(--c-primary-strong);
-      background: rgba(var(--bs-primary-rgb), .12);
+      background: rgba(139,92,246,.12);
       text-decoration: none;
       min-height: 38px;
     }
-    .pill-link:hover { background: rgba(var(--bs-primary-rgb), .18); color: #fff; }
+    .pill-link:hover { background: rgba(139,92,246,.18); color: #fff; }
 
-    /* List-group en sombre */
+    /* List-group sombre */
     .list-group-item {
       border-color: var(--bs-border-color) !important;
       color: var(--bs-body-color);
     }
 
-    /* Accordeon sombre + focus */
-    .accordion-button {
-      background: transparent; color: var(--bs-body-color);
-    }
+    /* Accordion sombre + focus */
+    .accordion-button { background: transparent; color: var(--bs-body-color); }
     .accordion-button:not(.collapsed) {
-      background: rgba(var(--bs-primary-rgb), .08);
+      background: rgba(139,92,246,.08);
       color: #fff;
       box-shadow: inset 0 -1px 0 var(--bs-border-color);
     }
-    .accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(var(--bs-primary-rgb), .25); }
+    .accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
 
-    /* Liens “stretched” dans projets (plus grande zone cliquable si nécessaire) */
-    .stretched {
-      position: relative;
-    }
+    /* “Stretched link” optionnel pour cartes */
+    .stretched { position: relative; }
     .stretched > a.stretched-link { z-index: 0; }
 
     /* Back-to-top plus intégré */
@@ -411,5 +413,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
+
 
 
