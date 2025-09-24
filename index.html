@@ -7,56 +7,49 @@
   <meta name="description" content="CV en ligne de T****n B****y — BTS SIO (SISR). eJPT & CPTS (HTB). Intérêt : pentest web et réseau, Linux, GitHub." />
   <link rel="canonical" href="https://trbarry.github.io/page_cv/" />
 
-  <!-- Perf: preconnect + preload (noscript fallback plus bas) -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  </noscript>
+  <!-- Bootstrap (CDN simple et fiable) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Thème noir + accessibilité + boutons cliquables -->
+  <!-- Thème noir prédominant + hiérarchie des actions -->
   <style>
     :root[data-bs-theme="dark"]{
-      /* Palette “noir profond” */
-      --c-bg: #0b0b0f;
-      --c-bg-soft: #121218;
-      --c-card: #121218;
-      --c-elev: #181821;
-      --c-border: #262634;
-      --c-text: #e9e9ef;
-      --c-text-dim: #a7abbb;
+      /* Noir prédominant */
+      --c-bg: #000000;
+      --c-card: #0d0d0d;      /* juste assez pour distinguer les cartes du fond */
+      --c-border: #151515;    /* séparation subtile (très sombre) */
+      --c-text: #f5f5f5;      /* blanc cassé lisible */
+      --c-text-dim: #cfcfcf;  /* très peu utilisé, uniquement méta/secondaire */
 
-      /* Violet (déclinaisons statiques pour compatibilité) */
-      --c-primary: #8b5cf6;        /* base */
-      --c-primary-strong: #a78bfa; /* + clair */
-      --c-primary-dark: #6d28d9;   /* + foncé */
-      --c-primary-vdark: #4c1d95;  /* très foncé */
+      /* Accent violet */
+      --c-primary: #8b5cf6;
+      --c-primary-hover: #a78bfa;
 
-      /* Mappage Bootstrap */
+      /* Mapping Bootstrap minimal */
       --bs-body-bg: var(--c-bg);
       --bs-body-color: var(--c-text);
       --bs-card-bg: var(--c-card);
       --bs-border-color: var(--c-border);
-      --bs-secondary: var(--c-text-dim);
       --bs-primary: var(--c-primary);
-      --bs-link-color: #8f66f7;
-      --bs-link-hover-color: var(--c-primary-strong);
+      --bs-link-color: var(--c-primary);
+      --bs-link-hover-color: var(--c-primary-hover);
       --bs-heading-color: var(--c-text);
-      --bs-code-color: var(--c-primary-strong);
-      --bs-focus-ring-color: rgba(139, 92, 246, .35);
+      --bs-focus-ring-color: rgba(139,92,246,.35);
     }
 
-    /* Relief doux et séparations subtiles */
-    .navbar,
-    .card { border: 1px solid var(--bs-border-color); }
-    .navbar { background: linear-gradient(180deg, var(--c-bg-soft), var(--c-bg)); }
-    .card { background: linear-gradient(180deg, var(--c-card), var(--c-elev)); }
+    /* Global */
+    body { background: var(--c-bg); color: var(--c-text); }
+    a { text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: 2px; }
 
-    /* Toggler lisible sur fond sombre */
-    .navbar-toggler { border-color: rgba(255,255,255,.15); }
-    .navbar-toggler-icon { filter: invert(1) contrast(1.3); }
+    /* Navbar & cartes (noir + légère élévation) */
+    .navbar, .card { border: 1px solid var(--c-border); }
+    .navbar { background: #000; }
+    .card { background: var(--c-card); }
+
+    /* Toggler lisible */
+    .navbar-toggler { border-color: rgba(255,255,255,.2); }
+    .navbar-toggler-icon { filter: invert(1) contrast(1.2); }
 
     /* Avatar */
     .avatar {
@@ -66,113 +59,81 @@
     }
 
     /* Titres de section */
-    .section-title {
-      border-left: 4px solid var(--bs-primary);
+    .section-title{
+      border-left: 4px solid var(--c-primary);
       padding-left: .5rem;
       text-transform: uppercase;
       letter-spacing: .04em;
       color: var(--bs-heading-color);
     }
 
-    /* Liens plus “clic” (surface + contrastes) */
-    a { text-underline-offset: .2em; }
-    a:hover { text-decoration-thickness: 2px; }
-
-    /* Boutons : taille cible >= 44px, focus visible, micro-anim */
-    .btn {
-      --pad-y: .6rem; --pad-x: .9rem;
-      padding: var(--pad-y) var(--pad-x);
+    /* Hiérarchie des actions */
+    /* 1) Primaire (CTA) = violet plein */
+    .btn-primary{
+      background: var(--c-primary);
+      border: 1px solid var(--c-primary);
+      color: #fff;
       border-radius: 999px;
-      transition: transform .08s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+      padding: .6rem 1rem;
       min-height: 44px;
       display: inline-flex; align-items: center; gap: .45rem;
-    }
-    .btn:active { transform: translateY(1px); }
-    .btn:focus-visible { outline: 0; box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
-
-    .btn-primary {
-      background: linear-gradient(180deg, #9a6bff, #7c3aed);
-      border-color: var(--c-primary-dark);
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: #a78bfa;
-      border-color: #8b5cf6;
-      color: #fff;
-    }
-
-    .btn-outline-light {
-      border-color: rgba(255,255,255,.35);
-      color: #fff;
-      background: rgba(255,255,255,.02);
-    }
-    .btn-outline-light:hover {
-      background: rgba(255,255,255,.08);
-      border-color: rgba(255,255,255,.55);
-      color: #fff;
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--bs-border-color);
-      color: var(--c-text);
-    }
-    .btn-ghost:hover {
-      background: rgba(139,92,246,.08);
-      border-color: var(--c-primary-dark);
-      color: #fff;
-    }
-
-    /* Badges transformés en pills cliquables */
-    .pill-link {
-      display: inline-flex; align-items: center; gap: .4rem;
-      padding: .45rem .7rem;
-      border-radius: 999px;
-      border: 1px solid #5b2ab6; /* fixe (ex-mix) */
-      color: var(--c-primary-strong);
-      background: rgba(139,92,246,.12);
+      transition: background .2s ease, border-color .2s ease, transform .08s ease, box-shadow .2s ease;
       text-decoration: none;
-      min-height: 38px;
     }
-    .pill-link:hover { background: rgba(139,92,246,.18); color: #fff; }
+    .btn-primary:hover{ background: var(--c-primary-hover); border-color: var(--c-primary-hover); color: #000; }
+    .btn-primary:active{ transform: translateY(1px); }
+    .btn-primary:focus-visible{ outline: 0; box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
 
-    /* List-group sombre */
-    .list-group-item {
-      border-color: var(--bs-border-color) !important;
-      color: var(--bs-body-color);
+    /* 2) Secondaire = outline violet sur noir */
+    .btn-outline-primary{
+      background: transparent;
+      border: 1px solid var(--c-primary);
+      color: var(--c-primary);
+      border-radius: 999px;
+      padding: .6rem 1rem;
+      min-height: 44px;
+      display: inline-flex; align-items: center; gap: .45rem;
+      transition: background .2s ease, color .2s ease, transform .08s ease, box-shadow .2s ease;
+    }
+    .btn-outline-primary:hover{ background: var(--c-primary); color: #000; }
+    .btn-outline-primary:active{ transform: translateY(1px); }
+    .btn-outline-primary:focus-visible{ outline: 0; box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
+
+    /* Tags / Certifs = pills translucides violettes */
+    .pill-link{
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .35rem .7rem;
+      border-radius: 999px;
+      border: 1px solid var(--c-primary);
+      color: var(--c-primary);
+      background: rgba(139,92,246,.14);
+      text-decoration: none;
+      min-height: 36px;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .pill-link:hover{ background: var(--c-primary); color: #000; border-color: var(--c-primary-hover); }
+
+    /* List-group sombre (sur noir) */
+    .list-group-item{
+      background: transparent; color: var(--bs-body-color);
+      border-color: var(--c-border) !important;
     }
 
     /* Accordion sombre + focus */
-    .accordion-button { background: transparent; color: var(--bs-body-color); }
-    .accordion-button:not(.collapsed) {
-      background: rgba(139,92,246,.08);
-      color: #fff;
-      box-shadow: inset 0 -1px 0 var(--bs-border-color);
-    }
-    .accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
+    .accordion-button{ background: transparent; color: var(--bs-body-color); }
+    .accordion-button:not(.collapsed){ background: rgba(139,92,246,.08); color: #fff; }
+    .accordion-button:focus{ box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
 
-    /* “Stretched link” optionnel pour cartes */
-    .stretched { position: relative; }
-    .stretched > a.stretched-link { z-index: 0; }
+    /* Back-to-top (secondaire) */
+    .btn-backtop{ position: fixed; bottom: 1rem; right: 1rem; }
 
-    /* Back-to-top plus intégré */
-    .btn-backtop {
-      border-radius: 999px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.4);
-      border: 1px solid var(--bs-border-color);
-    }
-
-    /* Impression : fond blanc lisible */
+    /* Impression en clair lisible */
     @media print {
       :root[data-bs-theme="dark"]{
-        --bs-body-bg: #fff;
-        --bs-body-color: #000;
-        --bs-card-bg: #fff;
-        --bs-border-color: #ddd;
-        --bs-link-color: #3b82f6;
+        --bs-body-bg:#fff; --bs-body-color:#000; --bs-card-bg:#fff; --bs-border-color:#ddd; --bs-link-color:#3b82f6;
       }
-      .btn, .navbar, .btn-backtop { display: none !important; }
-      a { text-decoration: underline; }
+      .btn, .navbar, .btn-backtop{ display:none !important; }
+      a{ text-decoration: underline; }
     }
   </style>
 
@@ -190,7 +151,7 @@
   </script>
 </head>
 <body data-bs-theme="dark">
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-sm btn-light" href="#content">Aller au contenu</a>
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-outline-primary btn-sm" href="#content">Aller au contenu</a>
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg sticky-top">
@@ -205,6 +166,7 @@
           <li class="nav-item"><a class="nav-link" href="#education">Formations</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           <li class="nav-item">
+            <!-- CTA primaire -->
             <a class="btn btn-primary btn-sm ms-lg-2" href="https://trxtxbook.com/articles/cpts-journey" target="_blank" rel="noopener">
               <i class="bi bi-box-arrow-up-right"></i><span class="ms-1">CPTS Journey</span>
             </a>
@@ -223,31 +185,33 @@
 
           <div class="flex-grow-1">
             <h1 class="h2 mb-1">T****n B****y</h1>
-            <p class="text-secondary mb-3">BTS services informatique aux organisations option A solutions d'infrastructure, systèmes et réseaux • Cybersécurité • Pentest Web Réseau </p>
+            <p class="text-secondary mb-3">BTS Services Informatiques aux Organisations, option SISR • Cybersécurité • Pentest Web & Réseau</p>
 
-
-
-            <!-- Liens -> tous en boutons/pills cliquables -->
+            <!-- Liens : CTA primaires + secondaires outline -->
             <div class="d-flex flex-wrap gap-2">
-              <a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/tristan-barry-43b91b330" target="_blank" rel="noopener">
-                <i class="bi bi-linkedin"></i><span class="ms-1">LinkedIn</span>
+              <!-- Primaire -->
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/tristan-barry-43b91b330" target="_blank" rel="noopener">
+                <i class="bi bi-linkedin"></i><span>LinkedIn</span>
               </a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/Trbarry" target="_blank" rel="noopener">
-                <i class="bi bi-github"></i><span class="ms-1">GitHub</span>
+              <!-- Secondaire -->
+              <a class="btn btn-outline-primary" href="https://github.com/Trbarry" target="_blank" rel="noopener">
+                <i class="bi bi-github"></i><span>GitHub</span>
               </a>
+              <!-- Tags / Certifs -->
               <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener">
                 <i class="bi bi-award"></i><span>eJPT</span>
               </a>
               <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener">
                 <i class="bi bi-award"></i><span>CPTS</span>
               </a>
-              <span class="pill-link" aria-disabled="true"><i class="bi bi-hourglass-split"></i><span>BSCP (en cours)</span></span>
-              <span class="pill-link" aria-disabled="true"><i class="bi bi-journal-code"></i><span>CCNA (self-learning)</span></span>
+              <span class="pill-link"><i class="bi bi-hourglass-split"></i><span>BSCP (en cours)</span></span>
+              <span class="pill-link"><i class="bi bi-journal-code"></i><span>CCNA (self-learning)</span></span>
             </div>
           </div>
 
           <div class="ms-auto d-print-none">
-            <button class="btn btn-outline-light" onclick="window.print()">
+            <!-- Secondaire -->
+            <button class="btn btn-outline-primary" onclick="window.print()">
               <i class="bi bi-printer"></i><span class="ms-1">Imprimer / PDF</span>
             </button>
           </div>
@@ -264,32 +228,28 @@
         <div class="card border-0 shadow rounded-4 h-100">
           <div class="card-body p-4">
             <h2 class="h5 section-title mb-3 fw-semibold">Profil</h2>
-            <p class="mb-3 text-body">Étudiant en reconversion vers la cybersécurité. Objectif court terme : consolider les bases réseau (BTS SIO SISR) et expertise pentest web. Objectif long terme : pentester.</p>
+            <p class="mb-3">Étudiant en reconversion vers la cybersécurité. Objectif court terme : consolider les bases réseau (BTS SIO SISR) et expertise pentest web. Objectif long terme : pentester.</p>
 
             <h3 class="h6 text-uppercase mt-4 mb-2">Compétences</h3>
             <ul class="list-group list-group-flush small mb-0">
-              <li class="list-group-item bg-transparent text-light"><strong>Réseaux :</strong> TCP/IP, VLAN, DHCP, DNS</li>
-              <li class="list-group-item bg-transparent text-light"><strong>Sécurité :</strong> Burp Suite, Nmap, Wireshark</li>
-              <li class="list-group-item bg-transparent text-light"><strong>Dev :</strong> HTML/CSS, JavaScript (débutant), Python (bases)</li>
-              <li class="list-group-item bg-transparent text-light"><strong>OS & Outils :</strong> Linux (Arch/Kali), Git/GitHub, VS Code, Obsidian</li>
+              <li class="list-group-item"><strong>Réseaux :</strong> TCP/IP, VLAN, DHCP, DNS</li>
+              <li class="list-group-item"><strong>Sécurité :</strong> Burp Suite, Nmap, Wireshark</li>
+              <li class="list-group-item"><strong>Dev :</strong> HTML/CSS, JavaScript (débutant), Python (bases)</li>
+              <li class="list-group-item"><strong>OS & Outils :</strong> Linux (Arch/Kali), Git/GitHub, VS Code, Obsidian</li>
             </ul>
 
             <h3 class="h6 text-uppercase mt-4 mb-2">Certifications</h3>
             <div class="d-flex flex-wrap gap-2">
-              <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener">
-                <i class="bi bi-award"></i><span>eJPT</span>
-              </a>
-              <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener">
-                <i class="bi bi-award"></i><span>CPTS</span>
-              </a>
-              <span class="pill-link" aria-disabled="true"><i class="bi bi-hourglass-split"></i><span>BSCP (en cours)</span></span>
-              <span class="pill-link" aria-disabled="true"><i class="bi bi-journal-code"></i><span>CCNA (self-learning)</span></span>
+              <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener"><i class="bi bi-award"></i><span>eJPT</span></a>
+              <a class="pill-link" href="https://trxtxbook.com/certifications" target="_blank" rel="noopener"><i class="bi bi-award"></i><span>CPTS</span></a>
+              <span class="pill-link"><i class="bi bi-hourglass-split"></i><span>BSCP (en cours)</span></span>
+              <span class="pill-link"><i class="bi bi-journal-code"></i><span>CCNA (self-learning)</span></span>
             </div>
 
             <h3 id="contact" class="h6 text-uppercase mt-4 mb-2">Contact</h3>
             <ul class="list-unstyled small mb-0">
-              <li><a class="pill-link" href="https://github.com/Trbarry" target="_blank" rel="noopener"><i class="bi bi-github"></i><span>github.com/Trbarry</span></a></li>
-              <li><a class="pill-link" href="https://www.linkedin.com/in/tristan-barry-43b91b330" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i><span>linkedin.com/in/tristan-barry-43b91b330</span></a></li>
+              <li><a class="btn btn-outline-primary btn-sm" href="https://github.com/Trbarry" target="_blank" rel="noopener"><i class="bi bi-github"></i><span class="ms-1">github.com/Trbarry</span></a></li>
+              <li><a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/tristan-barry-43b91b330" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i><span class="ms-1">linkedin.com/in/tristan-barry-43b91b330</span></a></li>
             </ul>
           </div>
         </div>
@@ -304,7 +264,7 @@
             <div class="d-grid gap-3">
 
               <!-- CPTS -->
-              <article class="border rounded-3 p-3 stretched">
+              <article class="border rounded-3 p-3">
                 <header class="d-flex justify-content-between flex-wrap gap-2">
                   <h3 class="h6 mb-0">CPTS — Rapport & méthode</h3>
                   <span class="text-secondary">2024</span>
@@ -325,7 +285,8 @@
                           <li>Gestion des preuves et priorisation des findings</li>
                           <li>Mise en forme type rapport de pentest (SysReptor)</li>
                         </ul>
-                        <a class="btn btn-sm btn-primary rounded-pill" href="https://trxtxbook.com/articles/cpts-journey" target="_blank" rel="noopener">
+                        <!-- CTA primaire -->
+                        <a class="btn btn-primary btn-sm rounded-pill" href="https://trxtxbook.com/articles/cpts-journey" target="_blank" rel="noopener">
                           <i class="bi bi-box-arrow-up-right"></i><span class="ms-1">Lire l’article CPTS Journey</span>
                         </a>
                       </div>
@@ -335,7 +296,7 @@
               </article>
 
               <!-- PortSwigger -->
-              <article class="p-2">
+              <article>
                 <header class="d-flex justify-content-between flex-wrap gap-2">
                   <h3 class="h6 mb-0">PortSwigger Web Security Academy — Labs</h3>
                   <span class="text-secondary">2024–2025</span>
@@ -348,7 +309,7 @@
               </article>
 
               <!-- HTB / Root-Me -->
-              <article class="p-2">
+              <article>
                 <header class="d-flex justify-content-between flex-wrap gap-2">
                   <h3 class="h6 mb-0">Hack The Box / Root-Me — Pratique continue</h3>
                   <span class="text-secondary">2023–2025</span>
@@ -396,16 +357,17 @@
       <div class="card-body p-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
         <small class="text-secondary">© <span id="year"></span> T****n B****y</small>
         <small>
-          <a href="https://github.com/Trbarry/page_cv" class="pill-link" target="_blank" rel="noopener">
-            <i class="bi bi-box-arrow-up-right"></i><span>Dépôt GitHub</span>
+          <!-- Secondaire -->
+          <a href="https://github.com/Trbarry/page_cv" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener">
+            <i class="bi bi-box-arrow-up-right"></i><span class="ms-1">Dépôt GitHub</span>
           </a>
         </small>
       </div>
     </div>
   </footer>
 
-  <!-- Back to top -->
-  <a href="#content" class="btn btn-light btn-backtop position-fixed bottom-0 end-0 m-3 d-print-none" aria-label="Revenir en haut">
+  <!-- Back to top (secondaire) -->
+  <a href="#content" class="btn btn-outline-primary btn-backtop d-print-none" aria-label="Revenir en haut">
     <i class="bi bi-arrow-up"></i>
   </a>
 
@@ -415,6 +377,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
+
 
 
 
