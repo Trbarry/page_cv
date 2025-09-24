@@ -1,1 +1,62 @@
-<h1>Mon CV en ligne</h1>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tristan Barry – CV</title>
+  <meta name="description" content="CV en ligne de Tristan Barry – BTS SIO SISR, cybersécurité, pentest web & réseau." />
+  <link rel="preload" href="css/style.css" as="style" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Tristan Barry</h1>
+    <p class="tagline">BTS SIO (SISR) • Cybersécurité • Pentest web & réseau</p>
+    <nav aria-label="Liens">
+      <ul class="inline">
+        <li><a href="https://github.com/<ton-alias>" rel="noopener" target="_blank">Mon GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content" class="container" tabindex="-1">
+    <section aria-labelledby="presentation">
+      <h2 id="presentation">Présentation</h2>
+      <p>Étudiant en reconversion vers la cybersécurité. Intérêt pour le pentest et l’admin réseau.</p>
+    </section>
+
+    <section aria-labelledby="skills">
+      <h2 id="skills">Compétences</h2>
+      <ul class="cols">
+        <li>Réseaux : TCP/IP, VLAN, DHCP, DNS</li>
+        <li>Sécu : Burp Suite (base), Nmap, Wireshark</li>
+        <li>Dev : HTML/CSS, JS (débutant), Python (bases)</li>
+        <li>Outils : Linux (Arch/Kali), Git/GitHub, VS Code</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="education">
+      <h2 id="education">Formations</h2>
+      <ul>
+        <li>BTS SIO (SISR) – 2025–2027 (en cours)</li>
+        <li>Certifs : eJPT, CPTS (HTB)</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="projects">
+      <h2 id="projects">Projets</h2>
+      <ul>
+        <li>Write-up CPTS (190 pages) – Structuration & reporting</li>
+        <li>Labs PortSwigger : XSS, CSRF, XXE, SSRF</li>
+        <li>HTB / Root-Me – entraînement continu</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>© <span id="year"></span> Tristan Barry — <a href="https://github.com/<ton-alias>">GitHub</a></p>
+  </footer>
+
+  <script defer src="js/app.js"></script>
+</body>
+</html>
