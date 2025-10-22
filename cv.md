@@ -2,8 +2,8 @@
 
 ## Présentation
 Passionné d’informatique et de cybersécurité, après 3 ans comme technicien fibre optique (Axione).  
-En reconversion, je prépare un **BTS SIO (SISR)** avec un focus **réseaux** et **pentest**.  
-Objectif : devenir pentester certifié, avec pratique régulière (HTB / Root-Me / TryHackMe) et reporting pro.
+En reconversion, je prépare un **BTS SIO (SISR)** avec un focus **réseaux**.  
+Objectif : Obtenir mon BTS SIO et a long terme monter en compétence en pentesting.
 
 ## Compétences
 - **Réseaux :** TCP/IP, VLAN, DHCP, DNS, notions config switches/routeurs
