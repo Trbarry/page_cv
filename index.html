@@ -1,34 +1,22 @@
+<!doctype html>
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>T****n B****y — CV (BTS SIO SISR, Cybersécurité, Réseau)</title>
+  <title>T****n B****y — CV (BTS SIO SISR, Cybersécurité, Réseau)  </title>
   <meta name="description" content="CV en ligne de T****n B****y — étudiant en BTS SIO (SISR) passionné par la cybersécurité. Certifié eJPT & CPTS (HTB), spécialisé en pentest web et réseau. Maîtrise de Linux, automatisation, Git/GitHub et outils d’audit. Présentation claire de ses projets, formations, certifications." />
   <link rel="canonical" href="https://trbarry.github.io/page_cv/" />
 
-  <!-- Perf : connexion anticipée -->
+  <!-- Perf: preconnect + preload (noscript fallback plus bas) -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-
-  <!-- ✅ Bootstrap : chargement différé et non bloquant pour PageSpeed -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        media="print"
-        onload="this.media='all'">
-
-  <!-- ✅ Bootstrap Icons : même principe -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-        media="print"
-        onload="this.media='all'">
-
-  <!-- ✅ Fallback si JavaScript désactivé -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Icônes: chargement non-bloquant -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'">
   <noscript>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   </noscript>
 
-  <!-- 🎨 Thème noir + accessibilité + boutons cliquables -->
+  <!-- Thème noir + accessibilité + boutons cliquables -->
   <style>
     :root[data-bs-theme="dark"]{
       /* Palette “noir profond” */
@@ -39,12 +27,13 @@
       --c-border: #262634;
       --c-text: #e9e9ef;
       --c-text-dim: #a7abbb;
+      
 
       /* Violet (déclinaisons statiques pour compatibilité) */
-      --c-primary: #8b5cf6;
-      --c-primary-strong: #a78bfa;
-      --c-primary-dark: #6d28d9;
-      --c-primary-vdark: #4c1d95;
+      --c-primary: #8b5cf6;        /* base */
+      --c-primary-strong: #a78bfa; /* + clair */
+      --c-primary-dark: #6d28d9;   /* + foncé */
+      --c-primary-vdark: #4c1d95;  /* très foncé */
 
       /* Mappage Bootstrap */
       --bs-body-bg: var(--c-bg);
@@ -86,11 +75,11 @@
       color: var(--bs-heading-color);
     }
 
-    /* Liens */
+    /* Liens plus “clic” (surface + contrastes) */
     a { text-underline-offset: .2em; }
     a:hover { text-decoration-thickness: 2px; }
 
-    /* Boutons */
+    /* Boutons : taille cible >= 44px, focus visible, micro-anim */
     .btn {
       --pad-y: .6rem; --pad-x: .9rem;
       padding: var(--pad-y) var(--pad-x);
@@ -135,12 +124,12 @@
       color: #fff;
     }
 
-    /* Pills */
+    /* Badges transformés en pills cliquables */
     .pill-link {
       display: inline-flex; align-items: center; gap: .4rem;
       padding: .45rem .7rem;
       border-radius: 999px;
-      border: 1px solid #5b2ab6;
+      border: 1px solid #5b2ab6; /* fixe (ex-mix) */
       color: var(--c-primary-strong);
       background: rgba(139,92,246,.12);
       text-decoration: none;
@@ -154,7 +143,7 @@
       color: var(--bs-body-color);
     }
 
-    /* Accordion sombre */
+    /* Accordion sombre + focus */
     .accordion-button { background: transparent; color: var(--bs-body-color); }
     .accordion-button:not(.collapsed) {
       background: rgba(139,92,246,.08);
@@ -163,25 +152,24 @@
     }
     .accordion-button:focus { box-shadow: 0 0 0 .2rem rgba(139,92,246,.35); }
 
-    /* Stretched links */
+    /* “Stretched link” optionnel pour cartes */
     .stretched { position: relative; }
     .stretched > a.stretched-link { z-index: 0; }
 
-    /* Back-to-top */
+    /* Back-to-top plus intégré */
     .btn-backtop {
       border-radius: 999px;
       box-shadow: 0 8px 24px rgba(0,0,0,.4);
       border: 1px solid var(--bs-border-color);
     }
+    /* Correction PageSpeed : forcer font-display swap sur bootstrap-icons */
+@font-face {
+  font-family: "bootstrap-icons";
+  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
+  font-display: swap;
+}
 
-    /* Correction PageSpeed : font-display swap sur bootstrap-icons */
-    @font-face {
-      font-family: "bootstrap-icons";
-      src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
-      font-display: swap;
-    }
-
-    /* Impression : fond clair */
+    /* Impression : fond blanc lisible */
     @media print {
       :root[data-bs-theme="dark"]{
         --bs-body-bg: #fff;
@@ -195,23 +183,19 @@
     }
   </style>
 
-  <!-- Données structurées (schema.org Person) -->
+  <!-- Données structurées (Person) -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "T****n B****y",
-    "url": "https://trbarry.github.io/page_cv/",
-    "sameAs": [
-      "https://github.com/Trbarry",
-      "https://www.linkedin.com/in/tristan-barry-43b91b330"
-    ],
-    "description": "Étudiant BTS SIO (SISR), certifié eJPT & CPTS (HTB), orientation pentest web & réseau.",
-    "knowsAbout": ["Pentest", "Réseaux", "Linux", "Burp Suite", "Nmap", "Wireshark"]
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"T****n B****y",
+    "url":"https://trbarry.github.io/page_cv/",
+    "sameAs":["https://github.com/Trbarry","https://www.linkedin.com/in/tristan-barry-43b91b330"],
+    "description":"Étudiant BTS SIO (SISR), certifié eJPT & CPTS (HTB), orientation pentest web & réseau.",
+    "knowsAbout":["Pentest","Réseaux","Linux","Burp Suite","Nmap","Wireshark"]
   }
   </script>
 </head>
-
 <body data-bs-theme="dark">
   <a class="visually-hidden-focusable position-absolute top-0 start-0 m-2 btn btn-sm btn-light" href="#content">Aller au contenu</a>
 
