@@ -7,14 +7,16 @@
   <meta name="description" content="CV en ligne de T****n B****y — étudiant en BTS SIO (SISR) passionné par la cybersécurité. Certifié eJPT & CPTS (HTB), spécialisé en pentest web et réseau. Maîtrise de Linux, automatisation, Git/GitHub et outils d’audit. Présentation claire de ses projets, formations, certifications." />
   <link rel="canonical" href="https://trbarry.github.io/page_cv/" />
 
-  <!-- Perf: preconnect + preload (noscript fallback plus bas) -->
+  <!-- Perf: pré-connexion au CDN -->
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <!-- Icônes: chargement non-bloquant -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" media="print" onload="this.media='all'">
-  <noscript>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  </noscript>
+
+  <!-- CSS principale : chargement synchrone pour éviter tout FOUC/CLS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet" fetchpriority="high">
+
+  <!-- Icônes : chargement standard (évite le reflow tardif des .bi) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet">
 
   <!-- Thème noir + accessibilité + boutons cliquables -->
   <style>
@@ -27,7 +29,6 @@
       --c-border: #262634;
       --c-text: #e9e9ef;
       --c-text-dim: #a7abbb;
-      
 
       /* Violet (déclinaisons statiques pour compatibilité) */
       --c-primary: #8b5cf6;        /* base */
@@ -162,12 +163,16 @@
       box-shadow: 0 8px 24px rgba(0,0,0,.4);
       border: 1px solid var(--bs-border-color);
     }
+
     /* Correction PageSpeed : forcer font-display swap sur bootstrap-icons */
-@font-face {
-  font-family: "bootstrap-icons";
-  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
-  font-display: swap;
-}
+    @font-face {
+      font-family: "bootstrap-icons";
+      src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
+      font-display: swap;
+    }
+
+    /* Stabilisation des icônes bootstrap pour éviter tout micro-shift si la font tarde */
+    .bi { display: inline-block; width: 1em; height: 1em; line-height: 1; }
 
     /* Impression : fond blanc lisible */
     @media print {
@@ -226,13 +231,9 @@
     <div class="card border-0 shadow rounded-4">
       <div class="card-body p-4 p-lg-5">
         <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3">
-         
-
           <div class="flex-grow-1">
             <h1 class="h2 mb-1">T****n B****y</h1>
             <p class="text-secondary mb-3">BTS services informatique aux organisations option A solutions d'infrastructure, systèmes et réseaux • Cybersécurité • Pentest Web Réseau </p>
-
-
 
             <!-- Liens -> tous en boutons/pills cliquables -->
             <div class="d-flex flex-wrap gap-2">
